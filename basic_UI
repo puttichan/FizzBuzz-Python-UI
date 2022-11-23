@@ -1,0 +1,38 @@
+import maya.cmds as cmds
+
+class Fizz_Buzz_Multiples_of_3_and_5_Calculator(object):
+      
+    # Fizz Buzz Multiples of 3 and 5 Calculator
+    def __init__(self):
+            
+        self.window = 'Fizz_Buzz_Multiples_of_3_and_5_Calculator'
+        self.title = 'Fizz Buzz Multiples of 3 and 5 Calculator'
+        self.size = (500, 500)
+            
+        # Close the old window if it is open.
+        if cmds.window(self.window, exists = True):
+            cmds.deleteUI(self.window, window = True)
+            
+        # Create a new window.
+        self.window = cmds.window(self.window, title=self.title, widthHeight=self.size)
+        
+        cmds.columnLayout(adjustableColumn = True)
+        cmds.separator(height = 20)
+        cmds.text('Fizz Buzz Multiples of 3 and 5 Calculator')
+        cmds.separator(height = 20)
+        
+        # Input initial number of the range.
+        cmds.text('Input your FIRST number of the range. Must be LOWER than the LAST number of the range.')
+        self.initialNumber = cmds.textFieldGrp(label = 'Initial Number: ', editable = True)
+        
+        # Input last number of the range.
+        cmds.text('Input your LAST number of the range.')
+        self.lastNumber = cmds.textFieldGrp(label = 'Last Number: ', editable = True)
+        
+        # Calculates the Fizz Buzz Multiples.
+        self.fizzBuzzCalculate = cmds.button(label = 'Calculate', command=self.fizzBuzz, h = 40)
+
+        # Diplay a new window.
+        cmds.showWindow()
+                                   
+myWindow = Fizz_Buzz_Multiples_of_3_and_5_Calculator()
